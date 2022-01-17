@@ -366,7 +366,7 @@ export default class Home extends React.Component {
           </button>
           
           <p style={{marginTop: 0}}>Devinez le <b>WORDLE</b> en 6 essais.</p>
-          <p>Chaque réponse doit être un mot valide de 5 lettres. Appuyez sur "Entrée" pour valider.</p>
+          <p>Chaque réponse doit être un mot valide de 5 lettres. Appuyez sur &quot;Entrée&quot; pour valider.</p>
           <p>Après chaque réponse, la couleur des tuiles changera pour montrer à quel point votre réponse était proche du mot.</p>
           <div style={{borderTop: '1px solid #d3d6da', borderBottom: '1px solid #d3d6da'}}>
             <p><b>Examples</b></p>
@@ -375,7 +375,7 @@ export default class Home extends React.Component {
             <img src="/pills.png" width="215px" style={{marginTop: '8px'}} />
             <p>La lettre <b>I</b> est dans le mot mais au mauvais endroit.</p>
             <img src="/vague.png" width="215px" style={{marginTop: '8px'}} />
-            <p>La lettre <b>U</b> n'est pas dans le mot à aucun endroit.</p>
+            <p>La lettre <b>U</b> n&apos;est pas dans le mot à aucun endroit.</p>
           </div>
           <p><b>Un nouveau WORDLE sera disponible chaque jour!</b></p>
         </div>
@@ -442,7 +442,7 @@ export default class Home extends React.Component {
             </button>
 
             <p style={{marginTop: '15px'}}>Devinez le <b>WORDLE</b> en 6 essais.</p>
-            <p>Chaque réponse doit être un mot valide de 5 lettres. Appuyez sur "Entrée" pour valider.</p>
+            <p>Chaque réponse doit être un mot valide de 5 lettres. Appuyez sur &quot;Entrée&quot; pour valider.</p>
             <p>Après chaque réponse, la couleur des tuiles changera pour montrer à quel point votre réponse était proche du mot.</p>
             <div style={{borderTop: '1px solid #d3d6da', borderBottom: '1px solid #d3d6da'}}>
               <p><b>Examples</b></p>
@@ -451,7 +451,7 @@ export default class Home extends React.Component {
               <img src="/pills.png" width="215px" style={{marginTop: '8px'}} />
               <p>La lettre <b>I</b> est dans le mot mais au mauvais endroit.</p>
               <img src="/vague.png" width="215px" style={{marginTop: '8px'}} />
-              <p>La lettre <b>U</b> n'est pas dans le mot à aucun endroit.</p>
+              <p>La lettre <b>U</b> n&apos;est pas dans le mot à aucun endroit.</p>
             </div>
             <p><b>Un nouveau WORDLE sera disponible chaque jour!</b></p>
 
