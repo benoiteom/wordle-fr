@@ -95,16 +95,6 @@ export default class Home extends React.Component {
       }
     } else {
       this.showHelpPopup();
-      // stats = {
-      //   'lastCompletedTs': 0,
-      //   'lastPlayedTs': Date.now(),
-      //   'currentStreak': 0,
-      //   'gamesPlayed': 1,
-      //   'gamesWon': 0,
-      //   'guesses': {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0},
-      //   'maxStreak': 0,
-      //   'winPercentage': 0
-      // }
     }
   }
 
@@ -211,6 +201,7 @@ export default class Home extends React.Component {
   }
 
   showHelpPage() {
+    document.getElementById('keyboard').style.zIndex = 0;
     document.getElementById('helpPage').style.top = '0';
     document.getElementById('helpPage').style.opacity = 1;
   }
@@ -218,9 +209,11 @@ export default class Home extends React.Component {
   hideHelpPage() {
     document.getElementById('helpPage').style.top = '5vh';
     document.getElementById('helpPage').style.opacity = 0;
+    setTimeout(() => { document.getElementById('keyboard').style.zIndex = 3; }, 250);
   }
 
   showHelpPopup() {
+    document.getElementById('keyboard').style.zIndex = 0;
     document.getElementById('helpPopup').style.display = 'block';
     setTimeout(() => {
       document.getElementById('helpPopup').style.top = '0';
@@ -234,9 +227,11 @@ export default class Home extends React.Component {
     document.getElementById('helpPopup').style.top = '5vh';
     document.getElementById('helpPopup').style.opacity = 0;
     setTimeout(() => { document.getElementById('helpPopup').style.display = 'none'; }, 500);
+    setTimeout(() => { document.getElementById('keyboard').style.zIndex = 3; }, 250);
   }
 
   showSettingsPage() {
+    document.getElementById('keyboard').style.zIndex = 0;
     document.getElementById('settingsPage').style.top = '0';
     document.getElementById('settingsPage').style.opacity = 1;
   }
@@ -244,9 +239,11 @@ export default class Home extends React.Component {
   hideSettingsPage() {
     document.getElementById('settingsPage').style.top = '5vh';
     document.getElementById('settingsPage').style.opacity = 0;
+    setTimeout(() => { document.getElementById('keyboard').style.zIndex = 3; }, 250);
   }
 
   showWinPage() {
+    document.getElementById('keyboard').style.zIndex = 0;
     document.getElementById('winPage').style.top = 0;
     document.getElementById('winPage').style.opacity = 1;
     document.getElementById('winPageContent').style.top = '20vh';
@@ -256,6 +253,7 @@ export default class Home extends React.Component {
   hideWinPage() {
     document.getElementById('winPage').style.top = '5vh';
     document.getElementById('winPage').style.opacity = 0;
+    setTimeout(() => { document.getElementById('keyboard').style.zIndex = 3; }, 250);
   }
 
   showPopup(message) {
@@ -328,43 +326,43 @@ export default class Home extends React.Component {
             </div>
           </div>
 
-          <div className={styles.keyboard}>
+          <div id="keyboard" className={styles.keyboard}>
             <div className={styles.keyboardRow}>
-              <div name="key" id="a">a</div>
-              <div name="key" id="z">z</div>
-              <div name="key" id="e">e</div>
-              <div name="key" id="r">r</div>
-              <div name="key" id="t">t</div>
-              <div name="key" id="y">y</div>
-              <div name="key" id="u">u</div>
-              <div name="key" id="i">i</div>
-              <div name="key" id="o">o</div>
-              <div name="key" id="p" style={{margin: 0}}>p</div>
+              <div name="key" id="a" onClick={() => this.handleKeyPress({key: 'a'})}>a</div>
+              <div name="key" id="z" onClick={() => this.handleKeyPress({key: 'z'})}>z</div>
+              <div name="key" id="e" onClick={() => this.handleKeyPress({key: 'e'})}>e</div>
+              <div name="key" id="r" onClick={() => this.handleKeyPress({key: 'r'})}>r</div>
+              <div name="key" id="t" onClick={() => this.handleKeyPress({key: 't'})}>t</div>
+              <div name="key" id="y" onClick={() => this.handleKeyPress({key: 'y'})}>y</div>
+              <div name="key" id="u" onClick={() => this.handleKeyPress({key: 'u'})}>u</div>
+              <div name="key" id="i" onClick={() => this.handleKeyPress({key: 'i'})}>i</div>
+              <div name="key" id="o" onClick={() => this.handleKeyPress({key: 'o'})}>o</div>
+              <div name="key" id="p" onClick={() => this.handleKeyPress({key: 'p'})} style={{margin: 0}}>p</div>
             </div>
             <div className={styles.keyboardRow}>
               {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
-              <div name="key" id="q">q</div>
-              <div name="key" id="s">s</div>
-              <div name="key" id="d">d</div>
-              <div name="key" id="f">f</div>
-              <div name="key" id="g">g</div>
-              <div name="key" id="h">h</div>
-              <div name="key" id="j">j</div>
-              <div name="key" id="k">k</div>
-              <div name="key" id="l">l</div>
-              <div name="key" id="m" style={{margin: 0}}>m</div>
+              <div name="key" id="q" onClick={() => this.handleKeyPress({key: 'q'})}>q</div>
+              <div name="key" id="s" onClick={() => this.handleKeyPress({key: 's'})}>s</div>
+              <div name="key" id="d" onClick={() => this.handleKeyPress({key: 'd'})}>d</div>
+              <div name="key" id="f" onClick={() => this.handleKeyPress({key: 'f'})}>f</div>
+              <div name="key" id="g" onClick={() => this.handleKeyPress({key: 'g'})}>g</div>
+              <div name="key" id="h" onClick={() => this.handleKeyPress({key: 'h'})}>h</div>
+              <div name="key" id="j" onClick={() => this.handleKeyPress({key: 'j'})}>j</div>
+              <div name="key" id="k" onClick={() => this.handleKeyPress({key: 'k'})}>k</div>
+              <div name="key" id="l" onClick={() => this.handleKeyPress({key: 'l'})}>l</div>
+              <div name="key" id="m" onClick={() => this.handleKeyPress({key: 'm'})} style={{margin: 0}}>m</div>
               {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
             </div>
             <div className={styles.keyboardRow}>
               <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} />
-              <div id="enter" style={{flex: '1.5', fontSize: '12px'}}>entrée</div>
-              <div name="key" id="w">w</div>
-              <div name="key" id="x">x</div>
-              <div name="key" id="c">c</div>
-              <div name="key" id="v">v</div>
-              <div name="key" id="b">b</div>
-              <div name="key" id="n">n</div>
-              <div id="back" style={{flex: '1.5', margin: 0}}>
+              <div id="enter" onClick={() => this.handleKeyPress({key: 'Enter'})} style={{flex: '1.5', fontSize: '12px'}}>entrée</div>
+              <div name="key" id="w" onClick={() => this.handleKeyPress({key: 'w'})}>w</div>
+              <div name="key" id="x" onClick={() => this.handleKeyPress({key: 'x'})}>x</div>
+              <div name="key" id="c" onClick={() => this.handleKeyPress({key: 'c'})}>c</div>
+              <div name="key" id="v" onClick={() => this.handleKeyPress({key: 'v'})}>v</div>
+              <div name="key" id="b" onClick={() => this.handleKeyPress({key: 'b'})}>b</div>
+              <div name="key" id="n" onClick={() => this.handleKeyPress({key: 'n'})}>n</div>
+              <div id="back" onClick={() => this.handleKeyPress({key: 'Backspace'})} style={{flex: '1.5', margin: 0}}>
                 <FontAwesomeIcon icon={faBackspace} style={{width: '25px', color: 'black'}}/>
               </div>
               <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} />
