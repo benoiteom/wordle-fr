@@ -97,8 +97,10 @@ export default class Home extends React.Component {
         for (let i = 0; i < 6; i++) {
           for (let j in res.boardState[i]) {
             let letter = document.getElementById(res.boardState[i][j]);
-            letter.style.backgroundColor = res.evaluations[i][j];
-            letter.style.color = 'white';
+            if (res.evaluations[i][j] != '#787c7e' || !(letter.style.backgroundColor.includes('rgb(106, 170, 100)') || letter.style.backgroundColor.includes('rgb(201, 180, 88)'))) {
+              letter.style.backgroundColor = res.evaluations[i][j];
+              letter.style.color = 'white';
+            }
           }
         }
       }
@@ -189,8 +191,10 @@ export default class Home extends React.Component {
             win_flag = false;
           }
           let letter = document.getElementById(tempState[this.state.rowIndex][n]);
-          letter.style.backgroundColor = temp_eval[n];
-          letter.style.color = 'white';
+          if (temp_eval[n] != '#787c7e' || !(letter.style.backgroundColor.includes('rgb(106, 170, 100)') || letter.style.backgroundColor.includes('rgb(201, 180, 88)'))) {
+            letter.style.backgroundColor = temp_eval[n];
+            letter.style.color = 'white';
+          }
         }
         if (win_flag) {
           this.handleWin();
