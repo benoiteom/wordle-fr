@@ -32,8 +32,17 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
     this.getLocalStats();
+
     document.addEventListener('keydown', this.handleKeyPress);
+
+    window.addEventListener('resize', () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
 
     var temp = new Date();
     var result = new Date(temp.toDateString())
@@ -437,7 +446,7 @@ export default class Home extends React.Component {
               <div className={styles.shareButton}>
                 <button onClick={this.copyToClipboard}>
                   Partager 
-                  <FontAwesomeIcon icon={faShareAlt} style={{width: '24px', color: 'white', paddingLeft: '10px'}}/>
+                  {/* <FontAwesomeIcon icon={faShareAlt} style={{width: '24px', color: 'white', paddingLeft: '10px'}}/> */}
                 </button>
               </div>
             </div>
