@@ -58,40 +58,53 @@ export default class Home extends React.Component {
     let stats = localStorage.getItem('stats');
     if (stats != undefined) {
       let res = JSON.parse(stats);
-      let nextDay = Math.floor(res.lastPlayedTs / (24 * 60 * 60 * 1000)) == Math.floor(Date.now() / (24 * 60 * 60 * 1000)) ? false : true;
+      let date = new Date(res.lastPlayedTs);
+      let temp = Math.floor(date.getTime() / (24 * 60 * 60 * 1000));
+      let date2 = new Date();
+      let temp2 = Math.floor(date2.getTime() / (24 * 60 * 60 * 1000));
+      let nextDay = temp == temp2 ? false : true;
       this.setState({ 
         boardState: nextDay ? ["", "", "", "", "", ""] : res.boardState,
         evaluations: nextDay ? [null, null, null, null, null, null] : res.evaluations,
         rowIndex: nextDay ? 0 : res.rowIndex,
         gameStatus: nextDay ? "IN_PROGRESS" : res.gameStatus,
         lastCompletedTs: res.lastCompletedTs,
-        lastPlayedTs: Date.now(),
+        lastPlayedTs: nextDay ? date2.getTime() : date.getTime(),
         currentStreak: res.currentStreak,
         gamesPlayed: nextDay ? res.gamesPlayed + 1 : res.gamesPlayed,
         gamesWon: res.gamesWon,
         guesses: res.guesses,
         maxStreak: res.maxStreak,
         winPercentage: res.winPercentage
+      }, () => {
+        localStorage.setItem('stats', JSON.stringify(this.state));
       })
-      for (let i = 0; i < 6; i++) {
-        for (let j in res.boardState[i]) {
-          let letter = document.getElementById(res.boardState[i][j]);
-          letter.style.backgroundColor = res.evaluations[i][j];
-          letter.style.color = 'white';
+      let keys = document.getElementsByName('key');
+      for (let el of keys) {
+        el.style.backgroundColor = '#d3d6da';
+        el.style.color = 'black';
+      }
+      if (!nextDay) {
+        for (let i = 0; i < 6; i++) {
+          for (let j in res.boardState[i]) {
+            let letter = document.getElementById(res.boardState[i][j]);
+            letter.style.backgroundColor = res.evaluations[i][j];
+            letter.style.color = 'white';
+          }
         }
       }
     } else {
       this.showHelpPopup();
-      stats = {
-        'lastCompletedTs': 0,
-        'lastPlayedTs': Date.now(),
-        'currentStreak': 0,
-        'gamesPlayed': 1,
-        'gamesWon': 0,
-        'guesses': {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0},
-        'maxStreak': 0,
-        'winPercentage': 0
-      }
+      // stats = {
+      //   'lastCompletedTs': 0,
+      //   'lastPlayedTs': Date.now(),
+      //   'currentStreak': 0,
+      //   'gamesPlayed': 1,
+      //   'gamesWon': 0,
+      //   'guesses': {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0},
+      //   'maxStreak': 0,
+      //   'winPercentage': 0
+      // }
     }
   }
 
@@ -126,16 +139,17 @@ export default class Home extends React.Component {
     let today = Date.now();
     let temp_streak = Math.floor((this.state.lastCompletedTs - today) / (24 * 60 * 60 * 1000)) <= 1 ? this.state.currentStreak + 1 : this.state.currentStreak;
     let temp_guess = this.state.guesses;
+    let won = this.state.gamesWon + 1;
     temp_guess[this.state.rowIndex + 1] += 1
     this.setState({
       gameStatus: 'WIN',
       lastCompletedTs: today,
       lastPlayedTs: today,
       currentStreak: temp_streak,
-      gamesWon: this.state.gamesWon + 1,
+      gamesWon: won,
       guesses: temp_guess,
       maxStreak: this.state.maxStreak < temp_streak ? temp_streak : this.state.maxStreak,
-      winPercentage: this.state.gamesWon + 1 / this.state.gamesPlayed
+      winPercentage: won / this.state.gamesPlayed
     })
     localStorage.setItem('stats', JSON.stringify(this.state));
     setTimeout(() => { this.showPopup('Gagné!') }, 1500);
@@ -316,40 +330,40 @@ export default class Home extends React.Component {
 
           <div className={styles.keyboard}>
             <div className={styles.keyboardRow}>
-              <div id="a">a</div>
-              <div id="z">z</div>
-              <div id="e">e</div>
-              <div id="r">r</div>
-              <div id="t">t</div>
-              <div id="y">y</div>
-              <div id="u">u</div>
-              <div id="i">i</div>
-              <div id="o">o</div>
-              <div id="p" style={{margin: 0}}>p</div>
+              <div name="key" id="a">a</div>
+              <div name="key" id="z">z</div>
+              <div name="key" id="e">e</div>
+              <div name="key" id="r">r</div>
+              <div name="key" id="t">t</div>
+              <div name="key" id="y">y</div>
+              <div name="key" id="u">u</div>
+              <div name="key" id="i">i</div>
+              <div name="key" id="o">o</div>
+              <div name="key" id="p" style={{margin: 0}}>p</div>
             </div>
             <div className={styles.keyboardRow}>
               {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
-              <div id="q">q</div>
-              <div id="s">s</div>
-              <div id="d">d</div>
-              <div id="f">f</div>
-              <div id="g">g</div>
-              <div id="h">h</div>
-              <div id="j">j</div>
-              <div id="k">k</div>
-              <div id="l">l</div>
-              <div id="m" style={{margin: 0}}>m</div>
+              <div name="key" id="q">q</div>
+              <div name="key" id="s">s</div>
+              <div name="key" id="d">d</div>
+              <div name="key" id="f">f</div>
+              <div name="key" id="g">g</div>
+              <div name="key" id="h">h</div>
+              <div name="key" id="j">j</div>
+              <div name="key" id="k">k</div>
+              <div name="key" id="l">l</div>
+              <div name="key" id="m" style={{margin: 0}}>m</div>
               {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
             </div>
             <div className={styles.keyboardRow}>
               <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} />
               <div id="enter" style={{flex: '1.5', fontSize: '12px'}}>entrée</div>
-              <div id="w">w</div>
-              <div id="x">x</div>
-              <div id="c">c</div>
-              <div id="v">v</div>
-              <div id="b">b</div>
-              <div id="n">n</div>
+              <div name="key" id="w">w</div>
+              <div name="key" id="x">x</div>
+              <div name="key" id="c">c</div>
+              <div name="key" id="v">v</div>
+              <div name="key" id="b">b</div>
+              <div name="key" id="n">n</div>
               <div id="back" style={{flex: '1.5', margin: 0}}>
                 <FontAwesomeIcon icon={faBackspace} style={{width: '25px', color: 'black'}}/>
               </div>
