@@ -214,11 +214,10 @@ export default class Home extends React.Component {
 
   showHelpPopup() {
     document.getElementById('keyboard').style.zIndex = 0;
-    document.getElementById('helpPopup').style.display = 'block';
+    document.getElementById('helpPopup').style.display = 'flex';
     setTimeout(() => {
       document.getElementById('helpPopup').style.top = '0';
       document.getElementById('helpPopup').style.opacity = 1;
-      document.getElementById('helpPopupContent').style.top = '15vh';
       document.getElementById('helpPopupContent').style.opacity = 1;
     }, 50);
   }
@@ -246,7 +245,6 @@ export default class Home extends React.Component {
     document.getElementById('keyboard').style.zIndex = 0;
     document.getElementById('winPage').style.top = 0;
     document.getElementById('winPage').style.opacity = 1;
-    document.getElementById('winPageContent').style.top = '20vh';
     document.getElementById('winPageContent').style.opacity = 1;
   }
 
