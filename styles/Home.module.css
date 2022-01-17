@@ -53,8 +53,10 @@
   grid-gap: 5px;
   padding: 10px;
   box-sizing: border-box;
-  width: 350px;
-  height: 420px;
+  width: calc((var(--vh, 1vh) * 100 - 50px - 200px - 20px) * 350 / 420);
+  height: calc(var(--vh, 1vh) * 100 - 50px - 200px - 20px);
+  max-width: 350px;
+  max-height: 420px;
 }
 
 .row {
