@@ -153,8 +153,12 @@ export default class Home extends React.Component {
       winPercentage: won / this.state.gamesPlayed
     })
     localStorage.setItem('stats', JSON.stringify(this.state));
+    for (let j = 0; j < 5; j++) {
+      setTimeout(() => { document.getElementById('row' + this.state.rowIndex + j).classList.add(styles.animateBounce); }, 1500);
+      setTimeout(() => { document.getElementById('row' + this.state.rowIndex + j).classList.remove(styles.animateBounce); }, 3500);
+    }
     setTimeout(() => { this.showPopup('Gagné!') }, 1500);
-    setTimeout(() => { this.showWinPage() }, 2500);
+    setTimeout(() => { this.showWinPage() }, 2350);
     document.removeEventListener('keydown', this.handleKeyPress);
   }
 
@@ -208,6 +212,9 @@ export default class Home extends React.Component {
         }
       } else {
         this.showPopup('Pas dans la liste');
+        document.getElementById('row' + this.state.rowIndex).classList.add(styles.animateShake);
+        setTimeout(() => { document.getElementById('row' + this.state.rowIndex).classList.remove(styles.animateShake); }, 600);
+
       }
     }
     this.setState({ boardState: tempState })
@@ -302,12 +309,12 @@ export default class Home extends React.Component {
           <div className={styles.boardContainer}>
             <div className={styles.board}>
               {this.state.boardState.map((board, i) => {
-                return (<div key={i} className={styles.row}>
+                return (<div key={i} id={'row' + i} className={styles.row}>
                   {Array.apply(null, Array(5)).map((val, j) => {
                     if (board[j] != undefined) {
                       if (this.state.evaluations[i] != null) {
-                        return <div key={j} className={styles.flipBox} style={{transitionDelay: j / 4 + 's'}} id={styles.flipBoxFlip}>
-                          <div style={{transitionDelay: j / 4 + 's'}} className={styles.flipBoxInner}>
+                        return <div key={j} id={'row' + i + j} className={`${styles.flipBox} ${styles.flipBoxFlip}`} style={{transitionDelay: j / 4 + 's', animationDelay: j / 16 + 's'}}>
+                          <div style={{transitionDelay: j / 4 + 's', animationDelay: j / 16 + 's'}} className={styles.flipBoxInner}>
                             <div className={styles.flipBoxFront}>
                               <p>{board[j]}</p>
                             </div>
@@ -317,7 +324,7 @@ export default class Home extends React.Component {
                           </div>
                         </div>
                       } else {
-                        return <div key={j} className={styles.flipBox}>
+                        return <div key={j} className={`${styles.flipBox} ${styles.animateExpand}`}>
                           <div className={styles.flipBoxInner}>
                             <div className={styles.flipBoxFront}>
                               <p>{board[j]}</p>
