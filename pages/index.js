@@ -25,7 +25,7 @@ export default class Home extends React.Component {
       winPercentage: 0
     }
 
-    this.state.solution = words[this.getDayIndex()];
+    this.state.solution = words.guess[this.getDayIndex()];
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.copyToClipboard = this.copyToClipboard.bind(this);
@@ -131,9 +131,9 @@ export default class Home extends React.Component {
 
 
   getDayIndex() {
-    let initialDate = new Date(2022, 0, 16);
+    let initialDate = new Date(2022, 0, 18);
     let daysSince = Math.floor((Date.now() - initialDate) / (24 * 60 * 60 * 1000));
-    return daysSince % (words.length - 1);
+    return daysSince % (words.guess.length - 1);
   }
 
   handleWin() {
@@ -169,7 +169,7 @@ export default class Home extends React.Component {
     } else if (e.key == 'Backspace' && tempState[this.state.rowIndex] != "") {
       tempState[this.state.rowIndex] = tempState[this.state.rowIndex].slice(0, -1);
     } else if (e.key == 'Enter' && tempState[this.state.rowIndex].length == 5) {
-      if (words.includes(tempState[this.state.rowIndex])) {
+      if (words.valid.includes(tempState[this.state.rowIndex])) {
         let temp_eval = ["#787c7e", "#787c7e", "#787c7e", "#787c7e", "#787c7e"];
         for (let i in tempState[this.state.rowIndex]) {
           if (tempState[this.state.rowIndex][i] == this.state.solution[i]) {
