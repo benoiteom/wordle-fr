@@ -292,6 +292,12 @@ div.winPage > div {
   font-size: 14px;
   overflow-y: auto;
   transition: all 0.1s linear;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
 }
 
 div.winPage > div > h4 {
@@ -304,11 +310,11 @@ div.winPage > div > h4 {
 }
 
 .statistics {
-  padding-bottom: 30px;
+  padding-bottom: 25px;
   display: flex;
   width: 250px;
   margin: 0 auto;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
 }
 
 div.statistics > div {
@@ -325,6 +331,49 @@ div.statistics > div > div {
   letter-spacing: 0.05em;
   font-variant-numeric: proportional-nums;
 }
+
+
+
+#distribution {
+  margin-top: 0;
+}
+
+.guessDistribution {
+  padding-bottom: 10px;
+  width: 74%;
+}
+
+div.guessDistribution > div {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.graph {
+  width: 100%;
+  height: 100%;
+  padding-left: 4px;
+}
+
+div.graph > div {
+  height: 100%;
+  width: 0%;
+  position: relative;
+  background-color: #787c7e;
+  display: flex;
+  justify-content: center;
+}
+
+div.graph > div {
+  font-weight: 700;
+  color: white;
+}
+
+
 
 
 
@@ -366,7 +415,7 @@ div.helpPopup > div {
 .timerShare {
   display: flex;
   width: 100%;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .timer {

@@ -441,12 +441,33 @@ export default class Home extends React.Component {
               </div>
               <div>
                 <div>{this.state.currentStreak}</div>
-                <div style={{fontSize: '12px'}}>Streak Courant</div>
+                <div style={{fontSize: '12px'}}>Serie Courant</div>
               </div>
               <div>
                 <div>{this.state.maxStreak}</div>
-                <div style={{fontSize: '12px'}}>Streak Max</div>
+                <div style={{fontSize: '12px'}}>Serie Max</div>
               </div>
+            </div>
+
+            <h4 id={styles.distribution} style={this.state.gameStatus != 'WIN' ? {display: 'none'} : null}>DISTRIBUTION DES RESULTATS </h4>
+
+            <div className={styles.guessDistribution} style={this.state.gameStatus != 'WIN' ? {display: 'none'} : null}>
+              { Array.apply(null, Array(6)).map((val, i) => {
+                let max_key = Object.keys(this.state.guesses).reduce((a, b) => this.state.guesses[a] > this.state.guesses[b] ? a : b);
+                return <div key={i}>
+                  <div className={styles.guess}>{i + 1}</div>
+                  <div className={styles.graph}>
+                    <div style={{
+                        width: this.state.guesses[i + 1] == 0 ? '7%' : (this.state.guesses[i + 1] / this.state.guesses[max_key] * 100) + '%',
+                        backgroundColor: i == this.state.rowIndex ? '#6aaa64' : '#787c7e',
+                        justifyContent: this.state.guesses[i + 1] == 0 ? 'center' : 'flex-end',
+                        paddingRight: this.state.guesses[i + 1] == 0 ? '0' : '10px'
+                      }}>
+                      <div>{this.state.guesses[i + 1]}</div>
+                    </div>
+                  </div>
+                </div>
+              })}
             </div>
 
             <div className={styles.timerShare} style={this.state.gameStatus != 'WIN' ? {display: 'none'} : null}>
