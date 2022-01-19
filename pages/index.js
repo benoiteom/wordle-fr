@@ -65,11 +65,11 @@ export default class Home extends React.Component {
 
   getLocalStats() {
     let stats = localStorage.getItem('stats');
+    let date2 = new Date(new Date().setHours(0,0,0,0));
     if (stats != undefined) {
       let res = JSON.parse(stats);
       let date = new Date(res.lastPlayedTs);
       let temp = Math.floor(date.getTime() / (24 * 60 * 60 * 1000));
-      let date2 = new Date();
       let temp2 = Math.floor(date2.getTime() / (24 * 60 * 60 * 1000));
       let nextDay = temp == temp2 ? false : true;
       this.setState({ 
@@ -106,6 +106,11 @@ export default class Home extends React.Component {
       }
     } else {
       this.showHelpPopup();
+      this.setState({ 
+        lastPlayedTs: date2.getTime(),
+      }, () => {
+        localStorage.setItem('stats', JSON.stringify(this.state));
+      })
     }
   }
 
@@ -137,15 +142,15 @@ export default class Home extends React.Component {
   }
 
   handleWin() {
-    let today = Date.now();
+    let today = new Date(new Date().setHours(0,0,0,0));
     let temp_streak = Math.floor((this.state.lastCompletedTs - today) / (24 * 60 * 60 * 1000)) <= 1 ? this.state.currentStreak + 1 : this.state.currentStreak;
     let temp_guess = this.state.guesses;
     let won = this.state.gamesWon + 1;
     temp_guess[this.state.rowIndex + 1] += 1
     this.setState({
       gameStatus: 'WIN',
-      lastCompletedTs: today,
-      lastPlayedTs: today,
+      lastCompletedTs: today.getTime(),
+      lastPlayedTs: today.getTime(),
       currentStreak: temp_streak,
       gamesWon: won,
       guesses: temp_guess,
