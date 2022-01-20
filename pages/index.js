@@ -175,9 +175,9 @@ export default class Home extends React.Component {
       if (tempState[this.state.rowIndex].length < 5 && e.key.length == 1 && e.key.match(/[a-z]/i)) {
         tempState[this.state.rowIndex] += e.key;
       }
-    } else if (e.key == 'Backspace' && tempState[this.state.rowIndex] != "") {
+    } else if (e.key == 'Backspace' && tempState[this.state.rowIndex] != "" && this.state.gameStatus != 'WIN') {
       tempState[this.state.rowIndex] = tempState[this.state.rowIndex].slice(0, -1);
-    } else if (e.key == 'Enter' && tempState[this.state.rowIndex].length == 5) {
+    } else if (e.key == 'Enter' && tempState[this.state.rowIndex].length == 5 && this.state.gameStatus != 'WIN') {
       if (words.valid.includes(tempState[this.state.rowIndex])) {
         let temp_eval = ["#787c7e", "#787c7e", "#787c7e", "#787c7e", "#787c7e"];
         for (let i in tempState[this.state.rowIndex]) {
