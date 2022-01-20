@@ -35,6 +35,12 @@ export default class Home extends React.Component {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 
+    function preventDefault(e){
+      e.preventDefault();
+    }
+    document.body.addEventListener('touchmove', preventDefault, { passive: false });
+    document.body.removeEventListener('touchmove', preventDefault);
+
     this.getLocalStats();
 
     document.addEventListener('keydown', this.handleKeyPress);
