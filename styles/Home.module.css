@@ -551,3 +551,15 @@ div.popup > h4 {
     transform: translate3d(0, 0, 0);
   }
 }
+
+@media screen and (max-width: 500px) {
+  .title {
+    font-size: 28px
+  }
+  .helpPage {
+    margin: 0 0;
+  }
+  .settingsPage {
+    margin: 0 0;
+  }
+}
