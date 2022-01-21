@@ -149,7 +149,10 @@ export default class Home extends React.Component {
 
   handleWin() {
     let today = new Date(new Date().setHours(0,0,0,0));
-    let temp_streak = Math.floor((this.state.lastCompletedTs - today) / (24 * 60 * 60 * 1000)) <= 1 ? this.state.currentStreak + 1 : this.state.currentStreak;
+    let temp_streak = 1;
+    if (this.state.maxStreak != 0) {
+      temp_streak = Math.floor((today - this.state.lastCompletedTs) / (24 * 60 * 60 * 1000)) <= 1 ? this.state.currentStreak + 1 : this.state.currentStreak;
+    }
     let temp_guess = this.state.guesses;
     let won = this.state.gamesWon + 1;
     temp_guess[this.state.rowIndex + 1] += 1
