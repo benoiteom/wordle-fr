@@ -387,7 +387,7 @@ export default class Home extends React.Component {
               {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
             </div>
             <div className={styles.keyboardRow}>
-              {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
+              <div style={{flex: '.5', backgroundColor: 'white'}} />
               <div id="enter" onClick={() => this.handleKeyPress({key: 'Enter'})} style={{flex: '1.5', fontSize: '12px'}}>entrée</div>
               <div name="key" id="w" onClick={() => this.handleKeyPress({key: 'w'})}>w</div>
               <div name="key" id="x" onClick={() => this.handleKeyPress({key: 'x'})}>x</div>
@@ -398,7 +398,7 @@ export default class Home extends React.Component {
               <div id="back" onClick={() => this.handleKeyPress({key: 'Backspace'})} style={{flex: '1.5', margin: 0}}>
                 <FontAwesomeIcon icon={faBackspace} style={{width: '25px', color: 'black'}}/>
               </div>
-              {/* <div style={{flex: '.5', margin: 0, backgroundColor: 'white'}} /> */}
+              <div style={{flex: '.5', backgroundColor: 'white'}} />
             </div>
           </div>
 
