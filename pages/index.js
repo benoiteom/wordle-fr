@@ -313,7 +313,8 @@ export default class Home extends React.Component {
             <div className={styles.title}> WORDLE<span style={{fontSize: '14px'}}>FR</span> </div>
             <div>
               <button onClick={this.showWinPage} className={styles.iconButton}>
-                <FontAwesomeIcon icon={faChartBar} style={{width: '20px', margin: '15px 15px', marginRight: '0', color: 'grey'}}/>
+                {/* Bar chart icons created by Muhazdinata - Flaticon */}
+                <img src='./bar-chart.png' style={{width: '20px', margin: '15px 15px', marginRight: '0', opacity: '50%'}}/>
               </button>
               <button onClick={this.showSettingsPage} className={styles.iconButton}>
                 <FontAwesomeIcon icon={faCog} style={{width: '20px', margin: '15px 15px', marginRight: '5px', color: 'grey'}}/>
