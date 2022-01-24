@@ -165,8 +165,9 @@ export default class Home extends React.Component {
       guesses: temp_guess,
       maxStreak: this.state.maxStreak < temp_streak ? temp_streak : this.state.maxStreak,
       winPercentage: won / this.state.gamesPlayed
+    }, () => {
+      localStorage.setItem('stats', JSON.stringify(this.state));
     })
-    localStorage.setItem('stats', JSON.stringify(this.state));
     for (let j = 0; j < 5; j++) {
       setTimeout(() => { document.getElementById('row' + this.state.rowIndex + j).classList.add(styles.animateBounce); }, 1500);
       setTimeout(() => { document.getElementById('row' + this.state.rowIndex + j).classList.remove(styles.animateBounce); }, 3500);
