@@ -93,6 +93,9 @@ export default class Home extends React.Component {
         winPercentage: res.winPercentage
       }, () => {
         localStorage.setItem('stats', JSON.stringify(this.state));
+        if (this.state.gameStatus == 'WIN') {
+          this.showWinPage();
+        }
       })
       let keys = document.getElementsByName('key');
       for (let el of keys) {
